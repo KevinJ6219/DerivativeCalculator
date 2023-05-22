@@ -38,6 +38,16 @@ public class Derive {
         return separatedList;
     }
 
+    public String powerRule(String term) {
+        String result = "";
+        int power = 0;
+        int coefficient = 0;
+        if (term.contains("^")){
+            power = Integer.parseInt(term.substring(term.indexOf("^") + 1));
+        }
+        result =
+    }
+
     public ArrayList<String> getSeparatedList() {
         return separatedList;
     }
