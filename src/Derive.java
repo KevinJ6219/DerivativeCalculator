@@ -4,9 +4,11 @@ public class Derive {
 
     private String equation;
     private ArrayList<String> separatedList;
+    private ArrayList<String> symbols;
     public Derive(String equation) {
         this.equation = equation;
         separatedList = separate();
+        symbols = getSymbols();
     }
 
     public ArrayList<String> separate() {
@@ -38,6 +40,17 @@ public class Derive {
         return separatedList;
     }
 
+    public ArrayList<String> getSymbols() {
+        ArrayList<String> symbols = new ArrayList<String>();
+        for (int i = 0; i < equation.length(); i++) {
+            String index = equation.substring(i, i+1);
+            if (index.equals("+") || index.equals("-") || index.equals("*") || index.equals("/")) {
+                symbols.add(index);
+            }
+        }
+        return symbols;
+    }
+
     public String powerRule(String term) {
         String result = "";
         int power = 0;
@@ -50,24 +63,49 @@ public class Derive {
         return result;
     }
 
-    public String quotientRule(String fraction) {
-        String firstTerm = fraction.substring(0,fraction.indexOf("/"));
-        String secondTerm = fraction.substring(fraction.indexOf("/") + 1);
+    public String quotientRule(String term1, String term2) {
+        String firstTerm = term1;
+        String secondTerm = term2;
         String result = "((" + powerRule(firstTerm) + "*" + secondTerm + ") - (" + powerRule(secondTerm) + "*" + firstTerm + ")) / (" + secondTerm + ")^2";
         return result;
     }
 
-    public String productRule(String function) {
-        String firstTerm = function.substring(0,function.indexOf("*")).replaceAll("\\s", "");
-        String secondTerm = function.substring(function.indexOf("*") + 1).replaceAll("\\s", "");
+    public String productRule(String term1, String term2) {
+        String firstTerm = term1.replaceAll("\\s", "");
+        String secondTerm = term2.replaceAll("\\s", "");
         String result = "((" + powerRule(firstTerm) + "*" + secondTerm + ") + (" + powerRule(secondTerm) + "*" + firstTerm + "))";
         return result;
     }
 
     public String solve() {
-        for (int i = 0; i < separatedList.size(); i = i + 2) {
+        ArrayList<String> result = new ArrayList<String>();
+        ArrayList<String> temp = separate();
+        String resultString = "";
+        for (int i = 1; i < symbols.size(); i++) {
+            if (symbols.contains("*") || symbols.contains("/")) {
+                if (symbols.get(i).equals("*")) {
+                    productRule(separatedList.get(i-1),separatedList.get(i));
+                    temp.remove(i);
+                    temp.remove(i-1);
+                    result.add(i-1, productRule(separatedList.get(i-1),separatedList.get(i)));
+                }
+                else {
+                    quotientRule(separatedList.get(i-1),separatedList.get(i));
+                    temp.remove(i);
+                    temp.remove(i-1);
+                    result.add(i-1, quotientRule(separatedList.get(i-1),separatedList.get(i)));
+
+                }
+            }
         }
-        return null;
+        for (int j = 0; j < temp.size(); j++) {
+            powerRule(temp.get(j));
+            result.add(j, powerRule(temp.get(j)));
+        }
+        for (int i = 0 ; i < temp.size(); i++) {
+            resultString += temp.get(i) + " + ";
+        }
+        return resultString;
     }
 
     public ArrayList<String> getSeparatedList() {
