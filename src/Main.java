@@ -1,9 +1,10 @@
-public class Main {
+import java.util.*;
+public class  Main {
     public static void main(String[] args) {
-        Derive question1 = new Derive("2x^2 - 3x + 3 / 6");
-        System.out.println(question1.separate());
-        System.out.println(question1.powerRule("-3x^5"));
-        System.out.println(question1.getSymbols());
-        System.out.println(question1.solve());
+//        Scanner input = new Scanner(System.in);
+//        System.out.print("Enter Equation: ");
+//        String equation = input.nextLine();
+        Derive question = new Derive("3x^2 / 2x^2");
+        System.out.println(question.solve());
     }
 }
