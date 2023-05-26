@@ -79,7 +79,8 @@ public class Derive {
     public static String productRule(String term1, String term2) {
         String firstTerm = term1.replaceAll("\\s", "");
         String secondTerm = term2.replaceAll("\\s", "");
-        String result = "((" + powerRule(firstTerm) + "*" + secondTerm + ") + (" + powerRule(secondTerm) + "*" + firstTerm + "))";
+        String result = "((" + powerRule(firstTerm) + "*" + secondTerm + ") + ("
+                + powerRule(secondTerm) + "*" + firstTerm + "))";
         return result;
     }
 
