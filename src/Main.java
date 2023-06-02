@@ -5,8 +5,8 @@ public class  Main {
         System.out.print("Enter Equation: ");
         String equation = input.nextLine();
         Derive question = new Derive(equation);
-        System.out.println(question.getSeparatedList());
-        System.out.println(question.getSymbols());
-        //question.solve();
+//        System.out.println(question.getSeparatedList());
+//        System.out.println(question.getSymbols());
+        question.solve();
     }
 }

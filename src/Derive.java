@@ -15,16 +15,19 @@ public class Derive {
     public ArrayList<String> separate() {
         ArrayList<String> separatedList = new ArrayList<String>();
         String temp = equation;
-        for (int i = 0 ; i < temp.length(); i++) {
+        int i = 0;
+        while (i < temp.length()) {
             String index = temp.substring(i, i+1);
             if (index.equals("+") || index.equals("-") || index.equals("*") || index.equals("/")) {
-                separatedList.add(temp.substring(0, i - 1));
+                separatedList.add(temp.substring(0, i));
                 temp = temp.substring(i+1);
+                i = 0;
             }
+            i++;
         }
         separatedList.add(temp);
-        for (int i = 0; i < separatedList.size(); i++) {
-            separatedList.set(i,separatedList.get(i).replaceAll("\\s+", ""));
+        for (int j = 0; j < separatedList.size(); j++) {
+            separatedList.set(j,separatedList.get(j).replaceAll("\\s+", ""));
         }
         return separatedList;
     }
@@ -77,6 +80,8 @@ public class Derive {
         }
         System.out.println(terms);
     }
+
+
 
     public ArrayList<String> getSeparatedList() {
         return separatedList;
