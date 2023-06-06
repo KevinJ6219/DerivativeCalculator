@@ -67,40 +67,20 @@ public class Derive {
     }
 
     public void solve() {
-        HashMap<String, ArrayList<String>> terms = new HashMap<>();
-        int count = 0;
-        ArrayList<String> temp =  new ArrayList<String>();
-        for (String term : separatedList) {
-            temp.add(term);
-        }
-        for (int i = 0; i < symbols.size(); i++) {
-            if (symbols.get(i).equals("*")) {
-                ArrayList<String> twoTerms = new ArrayList<String>();
-                twoTerms.add(temp.get(i));
-                twoTerms.add(temp.get(i+1));
-                System.out.println(temp);
-                temp.remove(i);
-                temp.remove(i);
-                System.out.println(temp);
-                terms.put("*" + count,twoTerms);
+        String temp = equation;
+
+        for (int i  = 0; i <  temp.length(); i++) {
+            int count = 0;
+            String index = temp.substring(i, i+1);
+            if (index.equals("*") || index.equals("/") || index.equals("+") || index.equals("-")) {
                 count++;
-            }
-            else if (symbols.get(i).equals("/")) {
-                ArrayList<String> twoTerms = new ArrayList<String>();
-                twoTerms.add(temp.get(i));
-                twoTerms.add(temp.get(i+1));
-                System.out.println(temp);
-                temp.remove(i);
-                temp.remove(i);
-                System.out.println(temp);
-                terms.put("/" + count,twoTerms);
-                count++;
+                if (index.equals("*")){
+                    temp = DerivativeMethods.productRule(symbols.get(count), symbols.get(count+1)) + temp.substring(temp.indexOf(symbols.get(count+1)));
+
+                }
             }
         }
-        System.out.println(terms);
     }
-
-
 
     public ArrayList<String> getSeparatedList() {
         return separatedList;
