@@ -67,20 +67,41 @@ public class Derive {
     }
 
     public void solve() {
-        String temp = equation;
+        ArrayList<String> newString = new ArrayList<>(separatedList);
 
-        for (int i  = 0; i <  temp.length(); i++) {
-            int count = 0;
-            String index = temp.substring(i, i+1);
-            if (index.equals("*") || index.equals("/") || index.equals("+") || index.equals("-")) {
-                count++;
-                if (index.equals("*")){
-                    temp = DerivativeMethods.productRule(symbols.get(count), symbols.get(count+1)) + temp.substring(temp.indexOf(symbols.get(count+1)));
+        // Apply the power rule to all terms
+        for (int i = 0; i < newString.size(); i++) {
+            newString.set(i, DerivativeMethods.powerRule(newString.get(i)));
+        }
 
-                }
+        // Apply the product rule and quotient rule
+        for (int i = 0; i < symbols.size(); i++) {
+            String symbol = symbols.get(i);
+            if (symbol.equals("*")) {
+                String simplified = DerivativeMethods.productRule(newString.get(i), newString.get(i + 1));
+                newString.set(i, simplified);
+                newString.remove(i + 1);
+                symbols.remove(i);
+                i--;
+            } else if (symbol.equals("/")) {
+                String simplified = DerivativeMethods.quotientRule(newString.get(i), newString.get(i + 1));
+                newString.set(i, simplified);
+                newString.remove(i + 1);
+                symbols.remove(i);
+                i--;
             }
         }
+
+        String result = newString.get(0);
+
+        // Combine the remaining terms with addition/subtraction symbols
+        for (int i = 1; i < newString.size(); i++) {
+            result += " " + symbols.get(i - 1) + " " + newString.get(i);
+        }
+
+        System.out.println(result);
     }
+
 
     public ArrayList<String> getSeparatedList() {
         return separatedList;

@@ -6,7 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="179c96f5-4f5a-4db5-a697-78d132cecbf0" name="Changes" comment="Tried implementing PEMDAS">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DerivativeMethods.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DerivativeMethods.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Derive.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Derive.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,9 +43,23 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;
   }
 }</component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="DerivativeCalculator" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MathEquationSolver" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MathEquationSolver" />
+      <module name="DerivativeCalculator" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PEMDASCalculator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="PEMDASCalculator" />
       <module name="DerivativeCalculator" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -52,6 +68,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.MathEquationSolver" />
+        <item itemvalue="Application.PEMDASCalculator" />
       </list>
     </recent_temporary>
   </component>
